@@ -1,0 +1,12 @@
+.card {
+  width: 384px;
+}
+
+.centred {
+  display: table;
+  margin: 0 auto;
+}
+
+.field {
+  width: 256px;
+}

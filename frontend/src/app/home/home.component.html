@@ -1,0 +1,74 @@
+<mat-card class="card">
+  <mat-card-title>
+    Homepage
+  </mat-card-title>
+  <mat-card-content>
+    Welcome to the homepage. Content on this page is public and does not
+    require any authentication to access.
+  </mat-card-content>
+</mat-card>
+<br>
+<mat-card class="card" *ngIf="localStorage.getItem('access_token') == null;">
+  <mat-card-title>
+    Login
+  </mat-card-title>
+  <mat-card-content class="centred">
+    <form [formGroup] = "loginForm" (ngSubmit)="onLogin()">
+      <mat-form-field class="field">
+      <mat-label>Username</mat-label>
+      <label>
+        <input matInput formControlName="username">
+      </label>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field">
+        <mat-label>Password</mat-label>
+        <label>
+          <input matInput formControlName="password" type="password">
+        </label>
+      </mat-form-field>
+      <br>
+      <button mat-flat-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+<br>
+<mat-card class="card">
+  <mat-card-title>
+    Register
+  </mat-card-title>
+  <mat-card-content class="centred">
+    <form [formGroup] = "registerForm" (ngSubmit)="onRegister()">
+      <mat-form-field class="field">
+      <mat-label>Username</mat-label>
+      <label>
+        <input matInput formControlName="username">
+      </label>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field">
+        <mat-label>Password</mat-label>
+        <label>
+          <input matInput formControlName="password1" type="password">
+        </label>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="field">
+        <mat-label>Confirm password</mat-label>
+        <label>
+          <input matInput formControlName="password2" type="password">
+        </label>
+      </mat-form-field>
+      <br>
+      <button mat-flat-button color="primary" type="submit" [disabled]="!registerForm.valid">Register</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #successDialog>
+  <h2 matDialogTitle>Success</h2>
+  <p matDialogContent><em>{{ successMsg }}</em></p>
+  <mat-dialog-actions align="end">
+    <button mat-button matDialogClose>Dismiss</button>
+  </mat-dialog-actions>
+</ng-template>

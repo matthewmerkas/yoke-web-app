@@ -1,0 +1,33 @@
+<mat-card class="card">
+  <mat-card-title>
+    Protected
+  </mat-card-title>
+  <mat-card-content>
+    <p>
+      Welcome, {{ username }}, to the protected page. Content on this page is
+      private and requires authentication to access. Below is the protected
+      content:
+    </p>
+    <p>{{ protectedData }}</p>
+  </mat-card-content>
+  <button mat-flat-button color="warn" (click)="openDialogByRef(warningDialog)">Delete account</button>
+</mat-card>
+
+<ng-template #warningDialog>
+  <h2 matDialogTitle>Warning</h2>
+  <p matDialogContent>
+    Please confirm your password to delete your account
+    <form [formGroup] = "deleteAccountForm" (ngSubmit)="onDeleteAccount()">
+      <mat-form-field class="field">
+        <mat-label>Password</mat-label>
+        <label>
+          <input matInput formControlName="password" type="password" required>
+        </label>
+      </mat-form-field>
+      <br>
+      <mat-dialog-actions align="end">
+        <button mat-flat-button matDialogClose color="warn" type="submit" [disabled]="!deleteAccountForm.valid">Delete</button>
+        <button mat-button matDialogClose>Cancel</button>
+      </mat-dialog-actions>
+    </form>
+</ng-template>

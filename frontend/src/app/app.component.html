@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <a href="/" class="title">{{ title }}</a>
+  <span class="spacer"></span>
+  <div *ngIf="localStorage.getItem('access_token') != null;">
+    <a mat-button href="/protected" class="button">Protected</a>
+    <a mat-button class="button" (click)="onLogout()">Logout</a>
+  </div>
+</mat-toolbar>
+
+<div class="content" role="main">
+  <router-outlet></router-outlet>
+</div>
+
+<ng-template #dialog>
+  <h2 matDialogTitle>{{ dialogTitle }}</h2>
+  <p matDialogContent><em>{{ dialogMessage }}</em></p>
+  <mat-dialog-actions align="end">
+    <button mat-button matDialogClose>Dismiss</button>
+  </mat-dialog-actions>
+</ng-template>
