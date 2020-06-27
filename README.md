@@ -29,7 +29,7 @@ These can be changed in the config.json file
 ### Instructions
 ```
 $ cd frontend
-$ npm install -g @angular/cli
+$ npm install
 $ ng serve
 ```
 
