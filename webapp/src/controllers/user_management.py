@@ -24,7 +24,7 @@ def create_account():
 
 
 @user_management.route('/delete_account', methods=['POST'])
-@jwt_required
+@jwt_required()
 def delete_account():
     username = get_jwt_identity()['username']
     password = get_password(request)

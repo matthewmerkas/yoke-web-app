@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, get_raw_jwt
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, get_jwt
 
 from src.models.auth import authenticate, get_password, get_username
 from src.models.revoked_token_model import RevokedTokenModel
@@ -25,9 +25,9 @@ def login():
 
 
 @auth.route('/logout', methods=['POST'])
-@jwt_required
+@jwt_required()
 def logout():
-    jti = get_raw_jwt()['jti']
+    jti = get_jwt()['jti']
     try:
         RevokedTokenModel(jti=jti)
         return {'message': 'Access token has been revoked'}
@@ -36,7 +36,7 @@ def logout():
 
 
 @auth.route('/protected', methods=['GET'])
-@jwt_required
+@jwt_required()
 def protected():
     username = get_jwt_identity()['username']
     return jsonify(username=username, data="This is a secret string"), 200
